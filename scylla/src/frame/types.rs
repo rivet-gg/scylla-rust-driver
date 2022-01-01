@@ -23,6 +23,8 @@ pub enum Consistency {
     All = 0x0005,
     LocalQuorum = 0x0006,
     EachQuorum = 0x0007,
+    Serial = 0x0008,
+    LocalSerial = 0x0009,
     LocalOne = 0x000A,
 }
 
