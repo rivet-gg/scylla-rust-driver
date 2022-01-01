@@ -24,23 +24,22 @@ use crate::query::Query;
 use crate::routing::{murmur3_token, Token};
 use crate::statement::{Consistency, SerialConsistency};
 use crate::tracing::{GetTracingConfig, TracingEvent, TracingInfo};
-use crate::transport::cluster::{Cluster, ClusterData};
-use crate::transport::connection::{
-    BatchResult, Connection, ConnectionConfig, QueryResult, VerifiedKeyspaceName,
-};
+use crate::transport::cluster::ClusterData;
 use crate::transport::connection_pool::PoolConfig;
-use crate::transport::iterator::{PreparedIteratorConfig, RowIterator};
-use crate::transport::load_balancing::{
-    LoadBalancingPolicy, RoundRobinPolicy, Statement, TokenAwarePolicy,
-};
-use crate::transport::metrics::Metrics;
-use crate::transport::node::Node;
-use crate::transport::retry_policy::{
-    DefaultRetryPolicy, QueryInfo, RetryDecision, RetryPolicy, RetrySession,
+use crate::transport::iterator::PreparedIteratorConfig;
+use crate::transport::{
+    cluster::Cluster,
+    connection::{BatchResult, Connection, ConnectionConfig, VerifiedKeyspaceName},
+    iterator::RowIterator,
+    load_balancing::{LoadBalancingPolicy, RoundRobinPolicy, Statement, TokenAwarePolicy},
+    metrics::Metrics,
+    node::Node,
+    query_result::QueryResult,
+    retry_policy::{DefaultRetryPolicy, QueryInfo, RetryDecision, RetryPolicy, RetrySession},
+    speculative_execution::SpeculativeExecutionPolicy,
+    Compression,
 };
 use crate::transport::speculative_execution;
-use crate::transport::speculative_execution::SpeculativeExecutionPolicy;
-use crate::transport::Compression;
 use crate::{batch::Batch, statement::StatementConfig};
 
 pub use crate::transport::connection_pool::PoolSize;
